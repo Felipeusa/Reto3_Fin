@@ -59,7 +59,7 @@ public class ClientService {
 
     }
 
-    public boolean clientAdmin(int clientId) {
+    public boolean deleteClient(int clientId) {
         Boolean resultado = getClient(clientId).map(clientPorEliminar -> {
             clientRepository.delete(clientPorEliminar);
             return true;
