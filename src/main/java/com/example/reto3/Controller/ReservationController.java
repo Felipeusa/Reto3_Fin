@@ -1,5 +1,7 @@
 package com.example.reto3.Controller;
 
+import com.example.reto3.Model.DTOs.CountClient;
+import com.example.reto3.Model.DTOs.Status;
 import com.example.reto3.Model.Message;
 import com.example.reto3.Model.Reservation;
 import com.example.reto3.Service.ReservationService;
@@ -41,5 +43,20 @@ public class ReservationController {
     public boolean delete(@PathVariable("id") int id){
         return reservationService.deleteReservation(id);
     }
+
+    @GetMapping("/report-clients")
+    public List<CountClient> getReportClients(){return reservationService.getTopClient();}
+
+    @GetMapping("/report-dates/{date1}/{date2}")
+    public List<Reservation> getReservationDate(@PathVariable("date1") String date1, @PathVariable ("date2") String date2){
+        return reservationService.getReservationPeriod(date1, date2);
+    }
+
+    @GetMapping("/report-status")
+    public Status getReportStatusReservations(){
+        return reservationService.getReservationStatus();
+    }
+
+
 
 }
